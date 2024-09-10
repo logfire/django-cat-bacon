@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ image.prompt }}</h1>
+  <a href="javascript:history.back()">back</a>
+  <img src="{{ image.url }}" alt="{{ image.prompt }}">
+{% endblock %}
