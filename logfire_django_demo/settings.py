@@ -129,3 +129,11 @@ STATICFILES_DIRS = [MAIN_STATIC]
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import logfire
+
+logfire.configure()
+logfire.instrument_django()
+logfire.instrument_httpx()
+logfire.instrument_openai()
+logfire.instrument_psycopg()

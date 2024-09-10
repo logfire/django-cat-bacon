@@ -5,6 +5,7 @@ from django.conf import settings
 from django.shortcuts import render, redirect, get_object_or_404
 
 from openai import Client
+import logfire
 
 from .forms import ImageForm
 from .models import Image
@@ -16,12 +17,13 @@ def index(request):
     if request.method == 'POST':
         form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
-            image_file, image_url = create_image(client, form.instance.animal, form.instance.artist)
-            print(f'image_file: {image_file!r}, image_url: {image_url!r}')
-            form.instance.file_path = image_file
-            form.instance.url = image_url
-            image = form.save()
-            return redirect('image-details', image_id=image.id)
+            with logfire.span('create_image {artist=}', artist=form.instance.artist) as span:
+                image_file, image_url = create_image(client, form.instance.animal, form.instance.artist)
+                span.set_attributes(dict(image_file=image_file, image_url=image_url))
+                form.instance.file_path = image_file
+                form.instance.url = image_url
+                image = form.save()
+                return redirect('image-details', image_id=image.id)
     else:
         form = ImageForm()
 
