@@ -1,5 +1,1 @@
-# Django Cat Bacon
-
-A demo of [Pydantic Logfire](https://pydantic.dev/logfire).
-
-Slides from talk at Django London meetup in September 2024 available [here](https://slides.com/samuelcolvin-pydantic/logfire-europython-2024/).
+# Move to [github.com/pydantic/talks -> 2024-09-django-london-logfire](https://github.com/pydantic/talks/tree/main/2024-09-django-london-logfire)
