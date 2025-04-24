@@ -9,4 +9,5 @@ dependencies = [
     "openai>=1.44.1",
     "httpx>=0.27.2",
     "psycopg>=3.2.1",
+    "logfire[django,httpx,openai,pyscopg]>=0.52.0",
 ]
